@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Kandidat side</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+<body class="container" style="position: center">
+<br/>
+<h1 class="h1">Liste over kandidater</h1>
+<br/>
+<table class="table" style="position: center">
+
+    <thead>
+    <button type="button" class="btn btn-primary" id="btn-add-candidate" data-bs-target="#staticBackdrop">
+        Tilføj ny kandidat
+    </button>
+    <button id="modal-chart-button" class="btn btn-primary">
+        Vis valgresultat
+    </button>
+    <tr>
+        <th id="name-for-table">Navn</th>
+        <th>Parti<br> <select id="party-sort-list" style="text-align: center">
+            <option>Alle</option>
+        </select></th>
+        <th>Stemmer</th>
+        <th>Knapper</th>
+    </tr>
+
+    </thead>
+
+    <tbody id="candidate-table-body" style="position: center"></tbody>
+
+</table>
+<br><br><br><br>
+
+<!--MODAL TIL KANDIDATER STARTER HER-->
+<div class="modal fade" id="candidate-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title-candidate">Tilføj kandidat</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Kandidat Id: <span id="candidate-id"></span></p>
+                <form>
+                    <div class="mb-3">
+                        <label for="input-name" class="form-label">Navn</label>
+                        <input type="text" class="form-control" id="input-name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="party" class="form-label">Vælg det parti der repræsenteres</label>
+                        <div>
+                            <input type="text" id="party" name="party" list="party-list" onfocus="this.value=''">
+                            <datalist id="party-list">
+
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="input-votes" class="form-label">Antal stemmer:</label>
+                        <input type="number" class="form-control" id="input-votes" value="0" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuller</button>
+                <button id="btn-save-candidate" type="button" class="btn btn-primary" data-bs-dismiss="modal">Gem
+                    ændringer
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END OF MODAL -->
+<!-- START PÅ CHART MODAL -->
+<div class="modal" id="modal-chart">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">De optalte stemmer:</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="piechart">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="candidateJS.js"></script>
+<script src="chartJS.js"></script>
+
+</html>
